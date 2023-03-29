@@ -35,17 +35,11 @@ public class GradebookServiceMQ extends GradebookService {
 		
 		// create EnrollmentDTO and send to gradebookQueue
 		 
-		EnrollmentDTO enrollment = new EnrollmentDTO();
-		enrollment.course_id = course_id;
-		enrollment.studentEmail = student_email;
-		enrollment.studentName=student_name;
-		
-		
-		
-		
+		EnrollmentDTO enrollment = new EnrollmentDTO(student_email, student_name, course_id);
+
 		rabbitTemplate.convertAndSend(gradebookQueue.getName(), enrollment);
 		
-		System.out.println("Message send to gradbook service for student "+ student_email +" " + course_id);  
+		System.out.println("Message sent to gradbook service regarding the enrollment of student "+ student_email +" in course " + course_id);  
 		
 	}
 	
