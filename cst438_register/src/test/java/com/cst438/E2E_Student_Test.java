@@ -1,7 +1,6 @@
 package com.cst438;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
