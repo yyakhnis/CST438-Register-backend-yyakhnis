@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class E2E_Student_Test {
 	public static final String EDGE_DRIVER_FILE_LOCATION = "C:/msedgedriver.exe";
@@ -35,6 +36,9 @@ public class E2E_Student_Test {
 		System.setProperty("webdriver.edge.driver", EDGE_DRIVER_FILE_LOCATION);
 		//TODO update the class ChromeDriver()  for your browser
 		WebDriver driver = new EdgeDriver();
+		
+		// Puts an Implicit wait for 10 seconds before throwing exception
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		try {
 			WebElement we;
@@ -67,8 +71,7 @@ public class E2E_Student_Test {
 			Thread.sleep(SLEEP_DURATION);
 			
 			// verify the correct message
-			we = driver.findElement(By.className("Toastify__toast-body"));
-			String message = we.getText();
+			String message = driver.findElement(By.className("Toastify__toast-body")).getText();
 			assertEquals("Student successfully added", message);
 
 
